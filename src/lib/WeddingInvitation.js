@@ -20,7 +20,7 @@ const WeddingInvitation = () => {
     minutes: 0,
     seconds: 0,
   });
-  const audioRef = useRef(new Audio("/music/background-music.mp3")); // Path relatif ke folder public
+  const audioRef = useRef(new Audio("/wedding/music/background-music.mp3")); // Path relatif ke folder public
 
   useEffect(() => {
     const audio = audioRef.current;
