@@ -8,8 +8,10 @@ import {
   VolumeX,
   Moon,
   Scroll,
+  Send,
+  MessageCircle,
 } from "lucide-react";
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 
 const WeddingInvitation = () => {
   const [searchParams] = useSearchParams();
@@ -30,9 +32,97 @@ const WeddingInvitation = () => {
   // const audioRef = useRef(new Audio("/music/background-music.mp3")); // Path relatif ke folder public
 
   // Ambil parameter dari URL
-  const to = searchParams.get('to') || 'Tamu Undangan';
+  const to = searchParams.get("to") || "Tamu Undangan";
+
+  // State untuk form RSVP
+  const [rsvpForm, setRsvpForm] = useState({
+    namaundangan: to,
+    presence: "hadir",
+    jumlah: 1,
+  });
+
+  // State untuk form wishes
+  const [wishForm, setWishForm] = useState({
+    namaundangan: to,
+    nama: "",
+    wishes: "",
+  });
+
+  // State untuk menampung wishes yang sudah ada
+  const [wishes, setWishes] = useState([]);
+
+  // State untuk loading
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("");
+
+  // Base URL API
+  const API_URL =
+    "https://script.google.com/macros/s/AKfycbyv-EaT5dfuu5og4gy0vxBMpYah0-RFqdWu9kEzq3jZjs4xLU7lh-WTVNx8s23l_2kY/exec";
+
+  // Fungsi untuk submit RSVP
+  const handleRSVPSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const params = new URLSearchParams({
+        action: "save-record-presence",
+        ...rsvpForm,
+      });
+
+      const response = await fetch(`${API_URL}?${params}`);
+      const data = await response.json();
+
+      if (data.result === "Insertion successful") {
+        setSubmitStatus("RSVP berhasil dikirim!");
+        setRsvpForm({ namaundangan: "", presence: "hadir", jumlah: 1 });
+      }
+    } catch (error) {
+      setSubmitStatus("Gagal mengirim RSVP. Silakan coba lagi.");
+    }
+    setIsLoading(false);
+  };
+
+  // Fungsi untuk submit wishes
+  const handleWishSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const params = new URLSearchParams({
+        action: "save-record-wishes",
+        ...wishForm,
+      });
+
+      const response = await fetch(`${API_URL}?${params}`);
+      const data = await response.json();
+
+      if (data.result === "Insertion successful") {
+        setSubmitStatus("Ucapan berhasil dikirim!");
+        setWishForm({ namaundangan: "", nama: "", wishes: "" });
+        fetchWishes(); // Refresh wishes list
+      }
+    } catch (error) {
+      setSubmitStatus("Gagal mengirim ucapan. Silakan coba lagi.");
+    }
+    setIsLoading(false);
+  };
+
+  // Fungsi untuk mengambil data wishes
+  const fetchWishes = async () => {
+    try {
+      const params = new URLSearchParams({
+        action: "read-record-wishes",
+      });
+
+      const response = await fetch(`${API_URL}?${params}`);
+      const data = await response.json();
+      setWishes(data.records || []);
+    } catch (error) {
+      console.error("Error fetching wishes:", error);
+    }
+  };
 
   useEffect(() => {
+    fetchWishes();
     const audio = audioRef.current;
     audio.loop = true;
     audio.volume = 0.5;
@@ -70,8 +160,8 @@ const WeddingInvitation = () => {
     };
   }, [isOpen]);
 
-   // Handle toggle musik
-   const toggleMusic = () => {
+  // Handle toggle musik
+  const toggleMusic = () => {
     if (isPlaying) {
       audioRef.current.pause();
     } else {
@@ -82,7 +172,7 @@ const WeddingInvitation = () => {
           .then(() => {
             // Autoplay started successfully
           })
-          .catch(error => {
+          .catch((error) => {
             // Autoplay was prevented
             console.log("Playback prevented:", error);
           });
@@ -100,14 +190,13 @@ const WeddingInvitation = () => {
           .then(() => {
             setIsPlaying(true);
           })
-          .catch(error => {
+          .catch((error) => {
             console.log("Auto-play prevented:", error);
             setIsPlaying(false);
           });
       }
     }
   }, [isOpen]);
-
 
   if (!isOpen) {
     return (
@@ -247,6 +336,136 @@ const WeddingInvitation = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="relative py-16 overflow-hidden bg-gradient-to-br from-emerald-50 to-emerald-100">
+        <div className="max-w-4xl px-4 py-8 mx-auto">
+          {/* RSVP Form */}
+          <div className="p-6 mb-12 bg-white rounded-lg shadow-lg">
+            <h2 className="mb-6 font-serif text-2xl text-emerald-800">
+              Konfirmasi Kehadiran
+            </h2>
+            <form onSubmit={handleRSVPSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Kehadiran
+                </label>
+                <select
+                  value={rsvpForm.presence}
+                  onChange={(e) =>
+                    setRsvpForm({ ...rsvpForm, presence: e.target.value })
+                  }
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+                >
+                  <option value="hadir">Hadir</option>
+                  <option value="tidak hadir">Tidak Hadir</option>
+                </select>
+              </div>
+              {rsvpForm.presence === "hadir" && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Jumlah
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={rsvpForm.jumlah}
+                    onChange={(e) =>
+                      setRsvpForm({
+                        ...rsvpForm,
+                        jumlah: parseInt(e.target.value),
+                      })
+                    }
+                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+                  />
+                </div>
+              )}
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full px-4 py-2 text-white transition-colors rounded-md bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300"
+              >
+                {isLoading ? "Mengirim..." : "Kirim RSVP"}
+              </button>
+            </form>
+          </div>
+
+          {/* Wishes Form */}
+          <div className="p-6 mb-12 bg-white rounded-lg shadow-lg">
+            <h2 className="mb-6 font-serif text-2xl text-emerald-800">
+              Kirim Ucapan
+            </h2>
+            <form onSubmit={handleWishSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Nama Panggilan
+                </label>
+                <input
+                  type="text"
+                  value={wishForm.nama}
+                  onChange={(e) =>
+                    setWishForm({ ...wishForm, nama: e.target.value })
+                  }
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Ucapan & Doa
+                </label>
+                <textarea
+                  value={wishForm.wishes}
+                  onChange={(e) =>
+                    setWishForm({ ...wishForm, wishes: e.target.value })
+                  }
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+                  rows="4"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full px-4 py-2 text-white transition-colors rounded-md bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300"
+              >
+                {isLoading ? "Mengirim..." : "Kirim Ucapan"}
+              </button>
+            </form>
+          </div>
+
+          {/* Display Wishes */}
+          <div className="p-6 bg-white rounded-lg shadow-lg">
+            <h2 className="mb-6 font-serif text-2xl text-emerald-800">
+              Ucapan & Doa
+            </h2>
+            <div className="space-y-4">
+              {wishes.map((wish, index) => (
+                <div key={index} className="pb-4 border-b border-gray-200">
+                  <div className="flex items-start gap-3">
+                    <MessageCircle className="w-5 h-5 mt-1 text-emerald-600" />
+                    <div>
+                      <p className="font-semibold text-emerald-800">
+                        {wish.nama}
+                      </p>
+                      <p className="text-gray-600">{wish.wishes}</p>
+                      <p className="mt-1 text-sm text-gray-400">
+                        {wish.currentTime}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Status Message */}
+          {submitStatus && (
+            <div className="fixed px-4 py-2 text-white rounded-md shadow-lg bottom-4 right-4 bg-emerald-600">
+              {submitStatus}
+            </div>
+          )}
         </div>
       </section>
 
