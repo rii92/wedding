@@ -34,7 +34,7 @@ const WeddingInvitation = () => {
 
     audio.addEventListener("ended", handleAudioEnd);
 
-    const weddingDate = new Date("2024-12-31T10:00:00");
+    const weddingDate = new Date("2024-12-16T10:00:00");
 
     const timer = setInterval(() => {
       const now = new Date();
