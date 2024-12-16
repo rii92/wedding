@@ -9,8 +9,10 @@ import {
   Moon,
   Scroll,
 } from "lucide-react";
+import { useSearchParams } from 'react-router-dom';
 
 const WeddingInvitation = () => {
+  const [searchParams] = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -26,6 +28,9 @@ const WeddingInvitation = () => {
 
   // LOCAL
   // const audioRef = useRef(new Audio("/music/background-music.mp3")); // Path relatif ke folder public
+
+  // Ambil parameter dari URL
+  const to = searchParams.get('to') || 'Tamu Undangan';
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -130,7 +135,7 @@ const WeddingInvitation = () => {
             <span className="relative z-10">Buka Undangan</span>
             <div className="absolute inset-0 transition-transform origin-left transform scale-x-0 bg-emerald-500 group-hover:scale-x-100"></div>
           </button>
-          <p className="mt-4 text-emerald-700">Kepada Yth: Rio Febri</p>
+          <p className="mt-4 text-emerald-700">Kepada Yth: {to}</p>
         </div>
       </div>
     );

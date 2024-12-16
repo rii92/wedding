@@ -1,9 +1,12 @@
 import './App.css';
+import { HashRouter } from 'react-router-dom';
 import WeddingInvitation from './lib/WeddingInvitation';
 
 function App() {
   return (
-    <WeddingInvitation />
+    <HashRouter>
+      <WeddingInvitation />
+    </HashRouter>
   );
 }
 
