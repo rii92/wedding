@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const PhotoGallery = () => {
@@ -9,22 +9,22 @@ const PhotoGallery = () => {
   const photos = [
     {
       id: 1,
-      src: "wedding/images/1.jpg", // Ganti dengan path foto Anda
+      src: "/wedding/images/1.jpg", // Ganti dengan path foto Anda
       caption: "First Date"
     },
     {
       id: 2,
-      src: "wedding/images/2.jpg",
+      src: "/wedding/images/2.jpg",
       caption: "The Proposal"
     },
     {
       id: 3,
-      src: "wedding/images/3.jpg",
+      src: "/wedding/images/3.jpg",
       caption: "Engagement Day"
     },
     {
       id: 4,
-      src: "wedding/images/4.jpg",
+      src: "/wedding/images/4.jpg",
       caption: "Pre-Wedding"
     },
     // Tambahkan foto lainnya sesuai kebutuhan
@@ -42,7 +42,7 @@ const PhotoGallery = () => {
   };
 
   // Handle navigasi foto
-  const navigate = useCallback((direction) => {
+  const navigate = (direction) => {
     const lastIndex = photos.length - 1;
     let newIndex;
 
@@ -54,7 +54,7 @@ const PhotoGallery = () => {
 
     setCurrentIndex(newIndex);
     setSelectedImage(photos[newIndex]);
-  });
+  };
 
   // Handle keyboard navigation
   React.useEffect(() => {
@@ -78,7 +78,7 @@ const PhotoGallery = () => {
 
     window.addEventListener('keydown', handleKeydown);
     return () => window.removeEventListener('keydown', handleKeydown);
-  }, [selectedImage, currentIndex, navigate]);
+  }, [selectedImage, currentIndex]);
 
   return (
     <section className="py-16 bg-white">
