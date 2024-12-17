@@ -8,10 +8,11 @@ import {
   VolumeX,
   Moon,
   Scroll,
-  Send,
   MessageCircle,
+  Navigation,
 } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
+import PhotoGallery from "../widget/photo-gallery";
 
 const WeddingInvitation = () => {
   const [searchParams] = useSearchParams();
@@ -295,7 +296,16 @@ const WeddingInvitation = () => {
               <p className="mb-2">Sabtu, 31 December 2024</p>
               <p className="mb-2">08:00 WIB</p>
               <p className="text-emerald-700">Masjid Al-Hidayah</p>
-              <p className="text-emerald-700">Jakarta Selatan</p>
+              <p className="mb-2 text-emerald-700">Jakarta Selatan</p>
+              <a
+                href={"https://maps.app.goo.gl/DJg9WWhKDBUxfu3T6"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full gap-2 px-4 py-2 text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
+              >
+                <Navigation className="w-4 h-4" />
+                <span>Petunjuk Arah</span>
+              </a>
             </div>
             <div className="p-8 text-center transition-transform transform bg-white rounded-lg shadow-lg hover:-translate-y-1">
               <h3 className="mb-4 font-serif text-2xl text-emerald-800">
@@ -305,11 +315,22 @@ const WeddingInvitation = () => {
               <p className="mb-2">Sabtu, 31 December 2024</p>
               <p className="mb-2">11:00 - 13:00 WIB</p>
               <p className="text-emerald-700">Hotel Grand Hyatt</p>
-              <p className="text-emerald-700">Jakarta Pusat</p>
+              <p className="mb-2 text-emerald-700">Jakarta Pusat</p>
+              <a
+                href={"https://maps.app.goo.gl/DJg9WWhKDBUxfu3T6"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full gap-2 px-4 py-2 text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
+              >
+                <Navigation className="w-4 h-4" />
+                <span>Petunjuk Arah</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
+
+      <PhotoGallery />
 
       <section className="relative py-16 overflow-hidden bg-white">
         <div className="container relative z-10 max-w-2xl px-4 mx-auto text-center">
