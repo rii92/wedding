@@ -16,11 +16,22 @@ module.exports = {
         'celestial-blue': '#1A3A8F',
         'celestial-silver': '#C0C0C0',
         'celestial-gold': '#FFD700',
+        // Updated tropical paradise theme colors (less bright)
+        'tropical-teal': '#1A7B72',
+        'tropical-teal-dark': '#0F5751',
+        'tropical-teal-light': '#2A9D93',
+        'tropical-coral': '#E67E22',
+        'tropical-coral-light': '#F39C12',
+        'tropical-sand': '#F5F0E6',
+        'tropical-leaf': '#0E6655',
+        'tropical-pink': '#C0392B',
       }
     },
   },
   plugins: [],
 }
+
+
 
 
 

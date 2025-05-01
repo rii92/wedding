@@ -85,6 +85,31 @@ const Home = () => {
               </Link>
             </div>
           </div>
+
+          {/* Template 4 - Tropical Theme */}
+          <div className="overflow-hidden transition-shadow border rounded-lg shadow-md hover:shadow-xl">
+            <div className="relative flex items-center justify-center h-64 overflow-hidden bg-tropical-sand">
+              <div className="absolute inset-0 bg-gradient-to-br from-tropical-teal-light to-tropical-teal opacity-80"></div>
+              <div className="relative z-10 p-6 text-center text-tropical-teal">
+                <h2 className="mb-2 font-serif text-2xl">Tropical Theme</h2>
+                <p className="mb-4 text-tropical-teal/80">Warm tropical-themed invitation</p>
+                <div className="w-20 h-1 mx-auto bg-tropical-coral/70"></div>
+                <p className="mt-4 font-serif text-xl">Daniel & Regina</p>
+              </div>
+            </div>
+            <div className="p-6">
+              <h3 className="mb-2 text-xl font-medium text-tropical-teal">Tropical Theme</h3>
+              <p className="mb-4 text-gray-600">
+                Template dengan nuansa tropis yang hangat dan menyenangkan
+              </p>
+              <Link 
+                to="/theme4?to=Tamu%20Undangan&code=DEMO04" 
+                className="block w-full px-4 py-2 font-medium text-center text-white transition-colors rounded-md bg-tropical-coral hover:bg-tropical-coral-light"
+              >
+                Lihat Template
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
