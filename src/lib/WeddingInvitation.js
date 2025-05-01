@@ -26,6 +26,9 @@ const WeddingInvitation = () => {
     seconds: 0,
   });
 
+  // Get invitation code from URL parameter
+  const invitationCode = searchParams.get("code") || "GUEST00";
+
   // PRODUCTION
   const audioRef = useRef(new Audio("/wedding/music/background-music.mp3")); // Path relatif ke folder public
 
@@ -40,6 +43,7 @@ const WeddingInvitation = () => {
     namaundangan: to,
     presence: "hadir",
     jumlah: 1,
+    kodeUndangan: invitationCode, // Use code from URL
   });
 
   // State untuk form wishes
@@ -47,6 +51,7 @@ const WeddingInvitation = () => {
     namaundangan: to,
     nama: "",
     wishes: "",
+    kodeUndangan: invitationCode, // Use code from URL
   });
 
   // State untuk menampung wishes yang sudah ada
@@ -210,7 +215,7 @@ const WeddingInvitation = () => {
         <div className="relative p-12 overflow-hidden text-center transition-all duration-500 transform rounded-lg shadow-xl bg-white/95 hover:scale-105">
           <Moon className="w-16 h-16 mx-auto mb-6 text-emerald-600 animate-bounce" />
           <h2 className="mb-4 font-serif text-2xl text-emerald-800">
-            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
+            بِسْ‌ اللَّ‌ الرَّحْ‌ الرَّحِيم
           </h2>
           <h3 className="mb-4 font-serif text-xl text-emerald-700">
             The Wedding of
@@ -249,7 +254,7 @@ const WeddingInvitation = () => {
         <div className="relative z-10 text-center text-white transition-all duration-1000 transform translate-y-0 opacity-100">
           <Moon className="w-16 h-16 mx-auto mb-6 text-yellow-200 animate-pulse" />
           <h2 className="mb-4 font-serif text-2xl animate-fade-in">
-            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
+            بِسْ‌ اللَّ‌ الرَّحْ‌ الرَّحِيم
           </h2>
           <h2 className="mb-4 font-serif text-2xl">We Are Getting Married</h2>
           <h1 className="mb-6 font-serif text-6xl font-bold">
@@ -359,6 +364,18 @@ const WeddingInvitation = () => {
           </div>
         </div>
       </section>
+
+      <div className="p-4 text-center bg-white rounded-lg shadow-lg">
+        <h3 className="mb-2 text-lg font-medium text-emerald-800">
+          Kode Undangan
+        </h3>
+        <p className="text-2xl font-bold tracking-wider text-emerald-600">
+          {invitationCode}
+        </p>
+        <p className="mt-2 text-sm text-emerald-600/60">
+          Simpan kode ini untuk keperluan RSVP
+        </p>
+      </div>
 
       <section className="relative py-16 overflow-hidden bg-gradient-to-br from-emerald-50 to-emerald-100">
         <div className="max-w-4xl px-4 py-8 mx-auto">
