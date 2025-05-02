@@ -2,6 +2,110 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { FaHeart, FaEnvelope, FaCalendarAlt, FaMapMarkerAlt, FaStar } from "react-icons/fa";
 
+// Language translations
+const translations = {
+  en: {
+    openInvitation: "Open Invitation",
+    weddingInvitation: "Wedding Invitation",
+    dear: "Dear",
+    youAreInvited: "You are cordially invited to our wedding",
+    weAreGettingMarried: "We Are Getting Married",
+    theHappyCouple: "The Happy Couple",
+    daughterOf: "Daughter of",
+    sonOf: "Son of",
+    saveTheDate: "Save The Date",
+    days: "Days",
+    hours: "Hours",
+    minutes: "Minutes",
+    seconds: "Seconds",
+    ourStory: "Our Story",
+    weddingDetails: "Wedding Details",
+    ceremony: "Ceremony",
+    reception: "Reception",
+    date: "Date",
+    time: "Time",
+    venue: "Venue",
+    address: "Address",
+    rsvp: "RSVP",
+    yourName: "Your Name",
+    attendance: "Attendance",
+    willAttend: "Will Attend",
+    unableToAttend: "Unable to Attend",
+    numberOfGuests: "Number of Guests",
+    submit: "Submit",
+    sendWishes: "Send Wishes",
+    yourMessage: "Your Message",
+    invitationCode: "Invitation Code",
+    submitting: "Submitting...",
+    wishesFor: "Wishes for Daniel & Regina",
+    noWishesYet: "No wishes yet. Be the first to send your wishes!",
+    weddingGifts: "Wedding Gifts",
+    giftMessage: "Your presence is our present. However, if you wish to give a gift, we've provided some options below.",
+    digitalGift: "Digital Gift",
+    digitalGiftMessage: "If you wish to send a gift digitally, you can transfer to the following account:",
+    physicalGift: "Physical Gift",
+    physicalGiftMessage: "If you prefer to send a physical gift, you can send it to the following address:",
+    copyAccountNumber: "Copy Account Number",
+    copyAddress: "Copy Address",
+    thankYou: "Thank you for being part of our special day",
+    rsvpSuccess: "RSVP successfully sent!",
+    rsvpFailed: "Failed to send RSVP. Please try again.",
+    wishSuccess: "Wish successfully sent!",
+    wishFailed: "Failed to send wish. Please try again.",
+    error: "An error occurred. Please try again."
+  },
+  id: {
+    openInvitation: "Buka Undangan",
+    weddingInvitation: "Undangan Pernikahan",
+    dear: "Kepada",
+    youAreInvited: "Anda diundang ke pernikahan kami",
+    weAreGettingMarried: "Kami Akan Menikah",
+    theHappyCouple: "Mempelai",
+    daughterOf: "Putri dari",
+    sonOf: "Putra dari",
+    saveTheDate: "Simpan Tanggal",
+    days: "Hari",
+    hours: "Jam",
+    minutes: "Menit",
+    seconds: "Detik",
+    ourStory: "Kisah Kami",
+    weddingDetails: "Detail Acara",
+    ceremony: "Akad Nikah",
+    reception: "Resepsi",
+    date: "Tanggal",
+    time: "Waktu",
+    venue: "Tempat",
+    address: "Alamat",
+    rsvp: "Konfirmasi Kehadiran",
+    yourName: "Nama Anda",
+    attendance: "Kehadiran",
+    willAttend: "Hadir",
+    unableToAttend: "Tidak Hadir",
+    numberOfGuests: "Jumlah Tamu",
+    submit: "Kirim",
+    sendWishes: "Kirim Ucapan",
+    yourMessage: "Pesan Anda",
+    invitationCode: "Kode Undangan",
+    submitting: "Mengirim...",
+    wishesFor: "Ucapan untuk Daniel & Regina",
+    noWishesYet: "Belum ada ucapan. Jadilah yang pertama mengirim ucapan!",
+    weddingGifts: "Hadiah Pernikahan",
+    giftMessage: "Kehadiran Anda adalah hadiah terbaik. Namun, jika Anda ingin memberikan hadiah, kami telah menyediakan beberapa opsi di bawah ini.",
+    digitalGift: "Hadiah Digital",
+    digitalGiftMessage: "Jika Anda ingin mengirimkan hadiah secara digital, Anda dapat transfer ke rekening berikut:",
+    physicalGift: "Hadiah Fisik",
+    physicalGiftMessage: "Jika Anda lebih suka mengirimkan hadiah fisik, Anda dapat mengirimkannya ke alamat berikut:",
+    copyAccountNumber: "Salin Nomor Rekening",
+    copyAddress: "Salin Alamat",
+    thankYou: "Terima kasih telah menjadi bagian dari hari spesial kami",
+    rsvpSuccess: "RSVP berhasil dikirim!",
+    rsvpFailed: "Gagal mengirim RSVP. Silakan coba lagi.",
+    wishSuccess: "Ucapan berhasil dikirim!",
+    wishFailed: "Gagal mengirim ucapan. Silakan coba lagi.",
+    error: "Terjadi kesalahan. Silakan coba lagi."
+  }
+};
+
 const WeddingInvitation3 = () => {
   const [searchParams] = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +117,10 @@ const WeddingInvitation3 = () => {
     minutes: 0,
     seconds: 0,
   });
+  
+  // Tambahkan state untuk bahasa
+  const [language, setLanguage] = useState('id'); // Default ke Bahasa Indonesia
+  const t = translations[language]; // Dapatkan terjemahan untuk bahasa saat ini
   
   // State for wishes list
   const [wishes, setWishes] = useState([]);
@@ -222,42 +330,77 @@ const WeddingInvitation3 = () => {
     setIsLoading(false);
   };
 
+  // Tambahkan komponen Language Switcher
+  const LanguageSwitcher = () => {
+    return (
+      <div className="fixed z-50 flex p-1 bg-white rounded-full shadow-lg top-4 right-4">
+        <button
+          onClick={() => setLanguage('id')}
+          className={`px-3 py-1 rounded-full ${
+            language === 'id'
+              ? 'bg-celestial-blue text-white'
+              : 'text-celestial-dark'
+          }`}
+        >
+          ID
+        </button>
+        <button
+          onClick={() => setLanguage('en')}
+          className={`px-3 py-1 rounded-full ${
+            language === 'en'
+              ? 'bg-celestial-blue text-white'
+              : 'text-celestial-dark'
+          }`}
+        >
+          EN
+        </button>
+      </div>
+    );
+  };
+
   return (
     <div className="relative">
       {/* Cover Page */}
       {!isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-celestial-dark">
+          <LanguageSwitcher />
           <div className="relative w-full h-full overflow-hidden">
             {/* Stars background */}
-            {generateStars(200)}
-            
-            {/* Moon */}
-            <div className="absolute w-32 h-32 rounded-full shadow-lg bg-celestial-silver top-1/4 right-1/4 shadow-celestial-silver/30">
-              <div className="absolute rounded-full inset-2 bg-celestial-dark"></div>
+            <div className="absolute inset-0">
+              {Array.from({ length: 100 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white rounded-full animate-twinkle"
+                  style={{
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    animationDelay: `${Math.random() * 5}s`,
+                    animationDuration: `${Math.random() * 5 + 5}s`,
+                  }}
+                ></div>
+              ))}
             </div>
             
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-              <div className="mb-8 transition-all duration-1000 transform scale-100 opacity-100">
-                <h2 className="mb-2 font-serif text-xl text-celestial-silver">The Wedding of</h2>
-                <h1 className="mb-6 font-serif text-5xl font-bold text-white">
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+              <div className="p-8 text-center bg-celestial-navy bg-opacity-80 backdrop-blur-sm rounded-lg shadow-xl border border-celestial-silver/20">
+                <div className="mb-6 text-celestial-gold">✨</div>
+                <h2 className="mb-4 text-xl font-medium text-celestial-silver">
+                  {t.weddingInvitation}
+                </h2>
+                <h1 className="mb-6 font-serif text-4xl font-bold text-white">
                   Daniel & Regina
                 </h1>
-                <p className="text-lg text-celestial-silver">31.12.2024</p>
-              </div>
-              
-              <div className="mt-4 mb-8">
-                <p className="mb-2 text-celestial-silver">Kepada Yth:</p>
-                <h3 className="px-8 py-2 text-xl font-medium text-white border-b-2 border-celestial-silver/30">
+                <p className="mb-8 text-celestial-silver">{t.dear}</p>
+                <p className="mb-8 text-2xl font-medium text-celestial-gold">
                   {to}
-                </h3>
+                </p>
+                <button
+                  onClick={handleOpen}
+                  className="px-8 py-3 mt-6 text-lg font-medium transition-colors duration-300 rounded-full text-celestial-dark bg-celestial-silver hover:bg-white animate-pulse"
+                >
+                  {t.openInvitation}
+                </button>
               </div>
-              
-              <button
-                onClick={handleOpen}
-                className="px-8 py-3 mt-6 text-lg font-medium transition-colors duration-300 rounded-full text-celestial-dark bg-celestial-silver hover:bg-white animate-pulse"
-              >
-                Buka Undangan
-              </button>
             </div>
           </div>
         </div>
@@ -272,31 +415,39 @@ const WeddingInvitation3 = () => {
         >
           {isPlaying ? "🔊" : "🔇"}
         </button>
+        
+        {/* Language Switcher */}
+        <LanguageSwitcher />
 
         {/* Hero Section */}
-        <section className="relative flex items-center justify-center min-h-screen overflow-hidden bg-gradient-to-b from-celestial-dark to-celestial-navy">
+        <section className="relative flex items-center justify-center min-h-screen overflow-hidden bg-celestial-dark">
+          {/* Stars background */}
           <div className="absolute inset-0">
-            {generateStars(150)}
+            {Array.from({ length: 100 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full animate-twinkle"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                  animationDuration: `${Math.random() * 5 + 5}s`,
+                }}
+              ></div>
+            ))}
           </div>
           
-          <div className="absolute w-40 h-40 rounded-full top-1/4 left-1/4 bg-celestial-silver/20 blur-xl"></div>
-          <div className="absolute rounded-full bottom-1/4 right-1/4 w-60 h-60 bg-celestial-blue/10 blur-3xl"></div>
-          
-          <div className="relative z-10 max-w-xl px-4 mx-auto text-center text-white transition-all duration-1000 transform translate-y-0 opacity-100">
-            <FaStar className="w-8 h-8 mx-auto mb-6 text-celestial-gold animate-pulse" />
-            <h2 className="mb-4 font-serif text-2xl">We Are Getting Married</h2>
+          <div className="relative z-10 max-w-4xl p-8 mx-auto text-center text-white">
+            <div className="inline-block p-2 mb-6 border-2 rounded-full border-celestial-silver">
+              <div className="w-8 h-8 text-celestial-gold animate-pulse">✨</div>
+            </div>
+            <h2 className="mb-4 font-serif text-2xl text-celestial-silver">
+              {t.weAreGettingMarried}
+            </h2>
             <h1 className="mb-6 font-serif text-6xl font-bold">
               Daniel & Regina
             </h1>
-            <p className="text-xl">31 December 2024</p>
-            
-            <div className="flex justify-center mt-12">
-              <div className="p-4 text-center border rounded-lg shadow-lg bg-celestial-navy/50 backdrop-blur-sm border-celestial-silver/20">
-                <h3 className="mb-2 text-lg font-medium text-celestial-silver">Kode Undangan</h3>
-                <p className="text-2xl font-bold tracking-wider text-celestial-gold">{invitationCode}</p>
-                <p className="mt-2 text-sm text-celestial-silver/60">Simpan kode ini untuk keperluan RSVP</p>
-              </div>
-            </div>
+            <p className="text-xl text-celestial-silver">31 December 2024</p>
           </div>
         </section>
 
@@ -349,29 +500,27 @@ const WeddingInvitation3 = () => {
         </section>
 
         {/* Countdown Section */}
-        <section className="py-16 bg-celestial-dark">
+        <section className="py-20 bg-celestial-navy">
           <div className="container max-w-4xl px-4 mx-auto">
-            <div className="mb-12 text-center">
-              <h2 className="mb-4 font-serif text-3xl text-white">Countdown to Our Special Day</h2>
-              <div className="w-24 h-1 mx-auto bg-celestial-silver/30"></div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              <div className="p-4 text-center border rounded-lg bg-celestial-navy/50 backdrop-blur-sm border-celestial-silver/10">
-                <div className="text-4xl font-bold text-celestial-gold">{countdown.days}</div>
-                <div className="text-celestial-silver">Days</div>
+            <h2 className="mb-12 font-serif text-3xl text-center text-celestial-gold">
+              {t.saveTheDate}
+            </h2>
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+              <div className="p-6 text-center bg-celestial-dark rounded-lg border border-celestial-silver/10">
+                <div className="text-4xl font-bold text-white">{countdown.days}</div>
+                <div className="text-celestial-silver">{t.days}</div>
               </div>
-              <div className="p-4 text-center border rounded-lg bg-celestial-navy/50 backdrop-blur-sm border-celestial-silver/10">
-                <div className="text-4xl font-bold text-celestial-gold">{countdown.hours}</div>
-                <div className="text-celestial-silver">Hours</div>
+              <div className="p-6 text-center bg-celestial-dark rounded-lg border border-celestial-silver/10">
+                <div className="text-4xl font-bold text-white">{countdown.hours}</div>
+                <div className="text-celestial-silver">{t.hours}</div>
               </div>
-              <div className="p-4 text-center border rounded-lg bg-celestial-navy/50 backdrop-blur-sm border-celestial-silver/10">
-                <div className="text-4xl font-bold text-celestial-gold">{countdown.minutes}</div>
-                <div className="text-celestial-silver">Minutes</div>
+              <div className="p-6 text-center bg-celestial-dark rounded-lg border border-celestial-silver/10">
+                <div className="text-4xl font-bold text-white">{countdown.minutes}</div>
+                <div className="text-celestial-silver">{t.minutes}</div>
               </div>
-              <div className="p-4 text-center border rounded-lg bg-celestial-navy/50 backdrop-blur-sm border-celestial-silver/10">
-                <div className="text-4xl font-bold text-celestial-gold">{countdown.seconds}</div>
-                <div className="text-celestial-silver">Seconds</div>
+              <div className="p-6 text-center bg-celestial-dark rounded-lg border border-celestial-silver/10">
+                <div className="text-4xl font-bold text-white">{countdown.seconds}</div>
+                <div className="text-celestial-silver">{t.seconds}</div>
               </div>
             </div>
           </div>
@@ -619,6 +768,10 @@ const WeddingInvitation3 = () => {
 };
 
 export default WeddingInvitation3;
+
+
+
+
 
 
 

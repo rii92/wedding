@@ -14,11 +14,88 @@ import {
 import { useSearchParams } from "react-router-dom";
 import PhotoGallery from "../widget/photo-gallery";
 
+// Objek terjemahan untuk Bahasa Indonesia dan Inggris
+const translations = {
+  id: {
+    openInvitation: "Buka Undangan",
+    weddingOf: "Pernikahan",
+    dear: "Kepada Yth",
+    weAreGettingMarried: "Kami Menikah",
+    days: "Hari",
+    hours: "Jam",
+    minutes: "Menit",
+    seconds: "Detik",
+    akadNikah: "Akad Nikah",
+    walimatulUrsy: "Walimatul Ursy",
+    directions: "Petunjuk Arah",
+    weddingGift: "Hadiah Pernikahan",
+    giftMessage:
+      "Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Dan jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.",
+    bank: "Bank",
+    accountHolder: "a.n.",
+    invitationCode: "Kode Undangan",
+    saveCode: "Simpan kode ini untuk keperluan RSVP",
+    rsvp: "Konfirmasi Kehadiran",
+    presence: "Kehadiran",
+    attend: "Hadir",
+    notAttend: "Tidak Hadir",
+    numberOfGuests: "Jumlah Tamu",
+    sendRSVP: "Kirim RSVP",
+    sending: "Mengirim...",
+    sendWishes: "Kirim Ucapan",
+    nickname: "Nama Panggilan",
+    wishesAndPrayers: "Ucapan & Doa",
+    wishesTitle: "Ucapan & Doa",
+    rsvpSent: "RSVP berhasil dikirim!",
+    rsvpFailed: "Gagal mengirim RSVP. Silakan coba lagi.",
+    wishSent: "Ucapan berhasil dikirim!",
+    wishFailed: "Gagal mengirim ucapan. Silakan coba lagi.",
+    thankYou: "Terima kasih telah menjadi bagian dari hari spesial kami",
+  },
+  en: {
+    openInvitation: "Open Invitation",
+    weddingOf: "The Wedding of",
+    dear: "Dear",
+    weAreGettingMarried: "We Are Getting Married",
+    days: "Days",
+    hours: "Hours",
+    minutes: "Minutes",
+    seconds: "Seconds",
+    akadNikah: "Ceremony",
+    walimatulUrsy: "Wedding Reception",
+    directions: "Directions",
+    weddingGift: "Wedding Gift",
+    giftMessage:
+      "Your blessings are a precious gift to us. If giving is an expression of your love, you may send a cashless gift.",
+    bank: "Bank",
+    accountHolder: "a/n",
+    invitationCode: "Invitation Code",
+    saveCode: "Save this code for RSVP purposes",
+    rsvp: "RSVP",
+    presence: "Attendance",
+    attend: "Will Attend",
+    notAttend: "Cannot Attend",
+    numberOfGuests: "Number of Guests",
+    sendRSVP: "Send RSVP",
+    sending: "Sending...",
+    sendWishes: "Send Wishes",
+    nickname: "Nickname",
+    wishesAndPrayers: "Wishes & Prayers",
+    wishesTitle: "Wishes & Prayers",
+    rsvpSent: "RSVP successfully sent!",
+    rsvpFailed: "Failed to send RSVP. Please try again.",
+    wishSent: "Wish successfully sent!",
+    wishFailed: "Failed to send wish. Please try again.",
+    thankYou: "Thank you for being part of our special day",
+  },
+};
+
 const WeddingInvitation = () => {
   const [searchParams] = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [language, setLanguage] = useState("id"); // State untuk bahasa, default ke Indonesia
   const [countdown, setCountdown] = useState({
     days: 0,
     hours: 0,
@@ -26,24 +103,24 @@ const WeddingInvitation = () => {
     seconds: 0,
   });
 
+  // Ambil terjemahan berdasarkan bahasa yang dipilih
+  const t = translations[language];
+
   // Get invitation code from URL parameter
   const invitationCode = searchParams.get("code") || "GUEST00";
 
-  // PRODUCTION
-  const audioRef = useRef(new Audio("/wedding/music/background-music.mp3")); // Path relatif ke folder public
-
-  // LOCAL
-  // const audioRef = useRef(new Audio("/music/background-music.mp3")); // Path relatif ke folder public
+  // Audio reference
+  const audioRef = useRef(new Audio("/wedding/music/background-music.mp3"));
 
   // Ambil parameter dari URL
-  const to = searchParams.get("to") || "Tamu Undangan";
+  const to = searchParams.get("to") || t.dear;
 
   // State untuk form RSVP
   const [rsvpForm, setRsvpForm] = useState({
     namaundangan: to,
     presence: "hadir",
     jumlah: 1,
-    kodeUndangan: invitationCode, // Use code from URL
+    kodeUndangan: invitationCode,
   });
 
   // State untuk form wishes
@@ -51,7 +128,7 @@ const WeddingInvitation = () => {
     namaundangan: to,
     nama: "",
     wishes: "",
-    kodeUndangan: invitationCode, // Use code from URL
+    kodeUndangan: invitationCode,
   });
 
   // State untuk menampung wishes yang sudah ada
@@ -79,11 +156,13 @@ const WeddingInvitation = () => {
       const data = await response.json();
 
       if (data.result === "Insertion successful") {
-        setSubmitStatus("RSVP berhasil dikirim!");
-        setRsvpForm({ namaundangan: "", presence: "hadir", jumlah: 1 });
+        setSubmitStatus(t.rsvpSent);
+        setRsvpForm({ namaundangan: to, presence: "hadir", jumlah: 1, kodeUndangan: invitationCode });
+      } else {
+        setSubmitStatus(t.rsvpFailed);
       }
     } catch (error) {
-      setSubmitStatus("Gagal mengirim RSVP. Silakan coba lagi.");
+      setSubmitStatus(t.rsvpFailed);
     }
     setIsLoading(false);
   };
@@ -102,12 +181,14 @@ const WeddingInvitation = () => {
       const data = await response.json();
 
       if (data.result === "Insertion successful") {
-        setSubmitStatus("Ucapan berhasil dikirim!");
-        setWishForm({ namaundangan: "", nama: "", wishes: "" });
+        setSubmitStatus(t.wishSent);
+        setWishForm({ namaundangan: to, nama: "", wishes: "", kodeUndangan: invitationCode });
         fetchWishes(); // Refresh wishes list
+      } else {
+        setSubmitStatus(t.wishFailed);
       }
     } catch (error) {
-      setSubmitStatus("Gagal mengirim ucapan. Silakan coba lagi.");
+      setSubmitStatus(t.wishFailed);
     }
     setIsLoading(false);
   };
@@ -171,15 +252,11 @@ const WeddingInvitation = () => {
     if (isPlaying) {
       audioRef.current.pause();
     } else {
-      // Gunakan Promise untuk handle autoplay policy
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
         playPromise
-          .then(() => {
-            // Autoplay started successfully
-          })
+          .then(() => {})
           .catch((error) => {
-            // Autoplay was prevented
             console.log("Playback prevented:", error);
           });
       }
@@ -204,6 +281,30 @@ const WeddingInvitation = () => {
     }
   }, [isOpen]);
 
+  // Komponen Language Switcher
+  const LanguageSwitcher = () => {
+    return (
+      <div className="fixed z-50 flex p-1 bg-white rounded-full shadow-lg top-4 right-4">
+        <button
+          onClick={() => setLanguage("id")}
+          className={`px-3 py-1 rounded-full ${
+            language === "id" ? "bg-emerald-600 text-white" : "text-emerald-600"
+          }`}
+        >
+          ID
+        </button>
+        <button
+          onClick={() => setLanguage("en")}
+          className={`px-3 py-1 rounded-full ${
+            language === "en" ? "bg-emerald-600 text-white" : "text-emerald-600"
+          }`}
+        >
+          EN
+        </button>
+      </div>
+    );
+  };
+
   if (!isOpen) {
     return (
       <div className="flex items-center justify-center h-screen bg-gradient-to-br from-emerald-800 via-emerald-700 to-emerald-900">
@@ -217,9 +318,7 @@ const WeddingInvitation = () => {
           <h2 className="mb-4 font-serif text-2xl text-emerald-800">
             بِسْ‌ اللَّ‌ الرَّحْ‌ الرَّحِيم
           </h2>
-          <h3 className="mb-4 font-serif text-xl text-emerald-700">
-            The Wedding of
-          </h3>
+          <h3 className="mb-4 font-serif text-xl text-emerald-700">{t.weddingOf}</h3>
           <h1 className="mb-6 font-serif text-4xl font-bold text-emerald-900">
             Daniel & Regina
           </h1>
@@ -227,10 +326,12 @@ const WeddingInvitation = () => {
             onClick={() => setIsOpen(true)}
             className="relative px-8 py-3 overflow-hidden text-white transition-all rounded-full bg-emerald-600 hover:bg-emerald-700 group"
           >
-            <span className="relative z-10">Buka Undangan</span>
+            <span className="relative z-10">{t.openInvitation}</span>
             <div className="absolute inset-0 transition-transform origin-left transform scale-x-0 bg-emerald-500 group-hover:scale-x-100"></div>
           </button>
-          <p className="mt-4 text-emerald-700">Kepada Yth: {to}</p>
+          <p className="mt-4 text-emerald-700">
+            {t.dear}: {to}
+          </p>
         </div>
       </div>
     );
@@ -238,9 +339,12 @@ const WeddingInvitation = () => {
 
   return (
     <div className="min-h-screen bg-emerald-50">
+      {/* Language Switcher */}
+      <LanguageSwitcher />
+
       <button
         onClick={() => toggleMusic()}
-        className="fixed z-50 p-3 transition-transform bg-white rounded-full shadow-lg top-4 right-4 hover:scale-110"
+        className="fixed z-50 p-3 transition-transform bg-white rounded-full shadow-lg bottom-4 right-4 hover:scale-110"
       >
         {isPlaying ? (
           <Volume2 size={24} className="text-emerald-600" />
@@ -256,11 +360,18 @@ const WeddingInvitation = () => {
           <h2 className="mb-4 font-serif text-2xl animate-fade-in">
             بِسْ‌ اللَّ‌ الرَّحْ‌ الرَّحِيم
           </h2>
-          <h2 className="mb-4 font-serif text-2xl">We Are Getting Married</h2>
+          <h2 className="mb-4 font-serif text-2xl">{t.weAreGettingMarried}</h2>
           <h1 className="mb-6 font-serif text-6xl font-bold">
             Daniel & Regina
           </h1>
-          <p className="text-xl">31 December 2024</p>
+          <p className="text-xl">
+            {new Date("2024-12-31").toLocaleDateString(language === "id" ? "id-ID" : "en-US", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
           <Scroll className="w-8 h-8 mx-auto mt-12 animate-bounce text-white/80" />
         </div>
       </section>
@@ -270,10 +381,10 @@ const WeddingInvitation = () => {
         <div className="container relative z-10 px-4 mx-auto">
           <div className="grid max-w-2xl grid-cols-4 gap-4 mx-auto text-center">
             {[
-              { label: "Hari", value: countdown.days },
-              { label: "Jam", value: countdown.hours },
-              { label: "Menit", value: countdown.minutes },
-              { label: "Detik", value: countdown.seconds },
+              { label: t.days, value: countdown.days },
+              { label: t.hours, value: countdown.hours },
+              { label: t.minutes, value: countdown.minutes },
+              { label: t.seconds, value: countdown.seconds },
             ].map((item, index) => (
               <div
                 key={item.label}
@@ -295,10 +406,17 @@ const WeddingInvitation = () => {
           <div className="grid gap-8 md:grid-cols-2">
             <div className="p-8 text-center transition-transform transform bg-white rounded-lg shadow-lg hover:-translate-y-1">
               <h3 className="mb-4 font-serif text-2xl text-emerald-800">
-                Akad Nikah
+                {t.akadNikah}
               </h3>
               <Calendar className="w-12 h-12 mx-auto mb-4 text-emerald-600" />
-              <p className="mb-2">Sabtu, 31 December 2024</p>
+              <p className="mb-2">
+                {new Date("2024-12-31").toLocaleDateString(language === "id" ? "id-ID" : "en-US", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
               <p className="mb-2">08:00 WIB</p>
               <p className="text-emerald-700">Masjid Al-Hidayah</p>
               <p className="mb-2 text-emerald-700">Jakarta Selatan</p>
@@ -309,15 +427,22 @@ const WeddingInvitation = () => {
                 className="inline-flex items-center justify-center w-full gap-2 px-4 py-2 text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
               >
                 <Navigation className="w-4 h-4" />
-                <span>Petunjuk Arah</span>
+                <span>{t.directions}</span>
               </a>
             </div>
             <div className="p-8 text-center transition-transform transform bg-white rounded-lg shadow-lg hover:-translate-y-1">
               <h3 className="mb-4 font-serif text-2xl text-emerald-800">
-                Walimatul Ursy
+                {t.walimatulUrsy}
               </h3>
               <MapPin className="w-12 h-12 mx-auto mb-4 text-emerald-600" />
-              <p className="mb-2">Sabtu, 31 December 2024</p>
+              <p className="mb-2">
+                {new Date("2024-12-31").toLocaleDateString(language === "id" ? "id-ID" : "en-US", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
               <p className="mb-2">11:00 - 13:00 WIB</p>
               <p className="text-emerald-700">Hotel Grand Hyatt</p>
               <p className="mb-2 text-emerald-700">Jakarta Pusat</p>
@@ -328,7 +453,7 @@ const WeddingInvitation = () => {
                 className="inline-flex items-center justify-center w-full gap-2 px-4 py-2 text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
               >
                 <Navigation className="w-4 h-4" />
-                <span>Petunjuk Arah</span>
+                <span>{t.directions}</span>
               </a>
             </div>
           </div>
@@ -340,25 +465,21 @@ const WeddingInvitation = () => {
       <section className="relative py-16 overflow-hidden bg-white">
         <div className="container relative z-10 max-w-2xl px-4 mx-auto text-center">
           <h2 className="mb-8 font-serif text-3xl text-emerald-800">
-            Wedding Gift
+            {t.weddingGift}
           </h2>
           <div className="p-8 rounded-lg shadow-lg bg-gradient-to-br from-emerald-50 to-emerald-100">
             <Gift className="w-12 h-12 mx-auto mb-4 text-emerald-600" />
-            <p className="mb-4 text-emerald-800">
-              Doa restu Anda merupakan karunia yang sangat berarti bagi kami.
-              Dan jika memberi adalah ungkapan tanda kasih Anda, Anda dapat
-              memberi kado secara cashless.
-            </p>
+            <p className="mb-4 text-emerald-800">{t.giftMessage}</p>
             <div className="space-y-4">
               <div className="p-4 transition-transform transform bg-white rounded hover:-translate-y-1">
-                <p className="font-semibold text-emerald-800">Bank BCA</p>
+                <p className="font-semibold text-emerald-800">{t.bank} BCA</p>
                 <p className="text-emerald-700">1234567890</p>
-                <p className="text-emerald-700">a.n. Daniel Pratama</p>
+                <p className="text-emerald-700">{t.accountHolder} Daniel Pratama</p>
               </div>
               <div className="p-4 transition-transform transform bg-white rounded hover:-translate-y-1">
-                <p className="font-semibold text-emerald-800">Bank Mandiri</p>
+                <p className="font-semibold text-emerald-800">{t.bank} Mandiri</p>
                 <p className="text-emerald-700">0987654321</p>
-                <p className="text-emerald-700">a.n. Regina Putri</p>
+                <p className="text-emerald-700">{t.accountHolder} Regina Putri</p>
               </div>
             </div>
           </div>
@@ -367,27 +488,23 @@ const WeddingInvitation = () => {
 
       <div className="p-4 text-center bg-white rounded-lg shadow-lg">
         <h3 className="mb-2 text-lg font-medium text-emerald-800">
-          Kode Undangan
+          {t.invitationCode}
         </h3>
         <p className="text-2xl font-bold tracking-wider text-emerald-600">
           {invitationCode}
         </p>
-        <p className="mt-2 text-sm text-emerald-600/60">
-          Simpan kode ini untuk keperluan RSVP
-        </p>
+        <p className="mt-2 text-sm text-emerald-600/60">{t.saveCode}</p>
       </div>
 
       <section className="relative py-16 overflow-hidden bg-gradient-to-br from-emerald-50 to-emerald-100">
         <div className="max-w-4xl px-4 py-8 mx-auto">
           {/* RSVP Form */}
           <div className="p-6 mb-12 bg-white rounded-lg shadow-lg">
-            <h2 className="mb-6 font-serif text-2xl text-emerald-800">
-              Konfirmasi Kehadiran
-            </h2>
+            <h2 className="mb-6 font-serif text-2xl text-emerald-800">{t.rsvp}</h2>
             <form onSubmit={handleRSVPSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Kehadiran
+                  {t.presence}
                 </label>
                 <select
                   value={rsvpForm.presence}
@@ -396,14 +513,14 @@ const WeddingInvitation = () => {
                   }
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
                 >
-                  <option value="hadir">Hadir</option>
-                  <option value="tidak hadir">Tidak Hadir</option>
+                  <option value="hadir">{t.attend}</option>
+                  <option value="tidak hadir">{t.notAttend}</option>
                 </select>
               </div>
               {rsvpForm.presence === "hadir" && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
-                    Jumlah
+                    {t.numberOfGuests}
                   </label>
                   <input
                     type="number"
@@ -424,7 +541,7 @@ const WeddingInvitation = () => {
                 disabled={isLoading}
                 className="w-full px-4 py-2 text-white transition-colors rounded-md bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300"
               >
-                {isLoading ? "Mengirim..." : "Kirim RSVP"}
+                {isLoading ? t.sending : t.sendRSVP}
               </button>
             </form>
           </div>
@@ -432,12 +549,12 @@ const WeddingInvitation = () => {
           {/* Wishes Form */}
           <div className="p-6 mb-12 bg-white rounded-lg shadow-lg">
             <h2 className="mb-6 font-serif text-2xl text-emerald-800">
-              Kirim Ucapan
+              {t.sendWishes}
             </h2>
             <form onSubmit={handleWishSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Nama Panggilan
+                  {t.nickname}
                 </label>
                 <input
                   type="text"
@@ -451,7 +568,7 @@ const WeddingInvitation = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Ucapan & Doa
+                  {t.wishesAndPrayers}
                 </label>
                 <textarea
                   value={wishForm.wishes}
@@ -468,7 +585,7 @@ const WeddingInvitation = () => {
                 disabled={isLoading}
                 className="w-full px-4 py-2 text-white transition-colors rounded-md bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300"
               >
-                {isLoading ? "Mengirim..." : "Kirim Ucapan"}
+                {isLoading ? t.sending : t.sendWishes}
               </button>
             </form>
           </div>
@@ -476,7 +593,7 @@ const WeddingInvitation = () => {
           {/* Display Wishes */}
           <div className="p-6 bg-white rounded-lg shadow-lg">
             <h2 className="mb-6 font-serif text-2xl text-emerald-800">
-              Ucapan & Doa
+              {t.wishesTitle}
             </h2>
             <div className="space-y-4">
               {wishes.map((wish, index) => (
@@ -510,7 +627,7 @@ const WeddingInvitation = () => {
       <footer className="py-8 text-center text-white bg-emerald-900">
         <div className="container px-4 mx-auto">
           <Heart className="w-8 h-8 mx-auto mb-4 text-emerald-400 animate-pulse" />
-          <p className="mb-2">Thank you for being part of our special day</p>
+          <p className="mb-2">{t.thankYou}</p>
           <p className="text-emerald-400">Daniel & Regina</p>
         </div>
       </footer>
