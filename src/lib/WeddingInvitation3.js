@@ -37,7 +37,7 @@ const translations = {
     yourMessage: "Your Message",
     invitationCode: "Invitation Code",
     submitting: "Submitting...",
-    wishesFor: "Wishes for Daniel & Regina",
+    wishesFor: "Wishes for Mempelai Pria & Mempelai Wanita",
     noWishesYet: "No wishes yet. Be the first to send your wishes!",
     weddingGifts: "Wedding Gifts",
     giftMessage: "Your presence is our present. However, if you wish to give a gift, we've provided some options below.",
@@ -87,7 +87,7 @@ const translations = {
     yourMessage: "Pesan Anda",
     invitationCode: "Kode Undangan",
     submitting: "Mengirim...",
-    wishesFor: "Ucapan untuk Daniel & Regina",
+    wishesFor: "Ucapan untuk Mempelai Pria & Mempelai Wanita",
     noWishesYet: "Belum ada ucapan. Jadilah yang pertama mengirim ucapan!",
     weddingGifts: "Hadiah Pernikahan",
     giftMessage: "Kehadiran Anda adalah hadiah terbaik. Namun, jika Anda ingin memberikan hadiah, kami telah menyediakan beberapa opsi di bawah ini.",
@@ -388,7 +388,7 @@ const WeddingInvitation3 = () => {
                   {t.weddingInvitation}
                 </h2>
                 <h1 className="mb-6 font-serif text-4xl font-bold text-white">
-                  Daniel & Regina
+                  Mempelai Pria & Mempelai Wanita
                 </h1>
                 <p className="mb-8 text-celestial-silver">{t.dear}</p>
                 <p className="mb-8 text-2xl font-medium text-celestial-gold">
@@ -445,7 +445,7 @@ const WeddingInvitation3 = () => {
               {t.weAreGettingMarried}
             </h2>
             <h1 className="mb-6 font-serif text-6xl font-bold">
-              Daniel & Regina
+              Mempelai Pria & Mempelai Wanita
             </h1>
             <p className="text-xl text-celestial-silver">31 December 2024</p>
           </div>
@@ -466,7 +466,7 @@ const WeddingInvitation3 = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-celestial-blue to-celestial-navy"></div>
                   <div className="absolute inset-0 flex items-center justify-center font-serif text-5xl text-white">R</div>
                 </div>
-                <h3 className="mb-2 font-serif text-2xl text-white">Regina Doe</h3>
+                <h3 className="mb-2 font-serif text-2xl text-white">Mempelai Wanita Doe</h3>
                 <p className="mb-4 text-celestial-silver">Putri dari Bpk. John Doe & Ibu Jane Doe</p>
                 <div className="flex justify-center space-x-4">
                   <a href="#" className="text-celestial-silver hover:text-celestial-gold">
@@ -484,7 +484,7 @@ const WeddingInvitation3 = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-celestial-blue to-celestial-navy"></div>
                   <div className="absolute inset-0 flex items-center justify-center font-serif text-5xl text-white">D</div>
                 </div>
-                <h3 className="mb-2 font-serif text-2xl text-white">Daniel Smith</h3>
+                <h3 className="mb-2 font-serif text-2xl text-white">Mempelai Pria Smith</h3>
                 <p className="mb-4 text-celestial-silver">Putra dari Bpk. Robert Smith & Ibu Sarah Smith</p>
                 <div className="flex justify-center space-x-4">
                   <a href="#" className="text-celestial-silver hover:text-celestial-gold">
@@ -722,7 +722,7 @@ const WeddingInvitation3 = () => {
                 <div className="p-4 mb-4 rounded-lg bg-celestial-dark/50">
                   <p className="mb-2 text-celestial-silver">Bank BCA</p>
                   <p className="text-xl font-medium text-celestial-gold">1234567890</p>
-                  <p className="text-celestial-silver">a.n. Daniel Smith</p>
+                  <p className="text-celestial-silver">a.n. Mempelai Pria Smith</p>
                 </div>
                 <button className="px-6 py-2 text-sm font-medium transition-colors rounded-full text-celestial-dark bg-celestial-silver hover:bg-white">
                   Copy Account Number
@@ -737,7 +737,7 @@ const WeddingInvitation3 = () => {
                 <div className="p-4 mb-4 rounded-lg bg-celestial-dark/50">
                   <p className="mb-2 text-celestial-silver">GoPay</p>
                   <p className="text-xl font-medium text-celestial-gold">081234567890</p>
-                  <p className="text-celestial-silver">a.n. Regina Doe</p>
+                  <p className="text-celestial-silver">a.n. Mempelai Wanita Doe</p>
                 </div>
                 <button className="px-6 py-2 text-sm font-medium transition-colors rounded-full text-celestial-dark bg-celestial-silver hover:bg-white">
                   Copy Phone Number
@@ -751,14 +751,14 @@ const WeddingInvitation3 = () => {
         <footer className="py-12 text-center bg-celestial-dark">
           <div className="container px-4 mx-auto">
             <div className="mb-8">
-              <h2 className="mb-4 font-serif text-3xl text-white">Daniel & Regina</h2>
+              <h2 className="mb-4 font-serif text-3xl text-white">Mempelai Pria & Mempelai Wanita</h2>
               <p className="text-celestial-silver">Thank you for celebrating our special day with us</p>
             </div>
             
             <div className="w-24 h-1 mx-auto mb-8 bg-celestial-silver/30"></div>
             
             <p className="text-sm text-celestial-silver/60">
-              © 2024 Daniel & Regina Wedding. All rights reserved.
+              © 2024 Mempelai Pria & Mempelai Wanita Wedding. All rights reserved.
             </p>
           </div>
         </footer>

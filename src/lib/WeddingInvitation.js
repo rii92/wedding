@@ -320,7 +320,7 @@ const WeddingInvitation = () => {
           </h2>
           <h3 className="mb-4 font-serif text-xl text-emerald-700">{t.weddingOf}</h3>
           <h1 className="mb-6 font-serif text-4xl font-bold text-emerald-900">
-            Daniel & Regina
+            Mempelai Pria & Mempelai Wanita
           </h1>
           <button
             onClick={() => setIsOpen(true)}
@@ -362,7 +362,7 @@ const WeddingInvitation = () => {
           </h2>
           <h2 className="mb-4 font-serif text-2xl">{t.weAreGettingMarried}</h2>
           <h1 className="mb-6 font-serif text-6xl font-bold">
-            Daniel & Regina
+            Mempelai Pria & Mempelai Wanita
           </h1>
           <p className="text-xl">
             {new Date("2024-12-31").toLocaleDateString(language === "id" ? "id-ID" : "en-US", {
@@ -474,12 +474,12 @@ const WeddingInvitation = () => {
               <div className="p-4 transition-transform transform bg-white rounded hover:-translate-y-1">
                 <p className="font-semibold text-emerald-800">{t.bank} BCA</p>
                 <p className="text-emerald-700">1234567890</p>
-                <p className="text-emerald-700">{t.accountHolder} Daniel Pratama</p>
+                <p className="text-emerald-700">{t.accountHolder} Mempelai Pria Pratama</p>
               </div>
               <div className="p-4 transition-transform transform bg-white rounded hover:-translate-y-1">
                 <p className="font-semibold text-emerald-800">{t.bank} Mandiri</p>
                 <p className="text-emerald-700">0987654321</p>
-                <p className="text-emerald-700">{t.accountHolder} Regina Putri</p>
+                <p className="text-emerald-700">{t.accountHolder} Mempelai Wanita Putri</p>
               </div>
             </div>
           </div>
@@ -628,7 +628,7 @@ const WeddingInvitation = () => {
         <div className="container px-4 mx-auto">
           <Heart className="w-8 h-8 mx-auto mb-4 text-emerald-400 animate-pulse" />
           <p className="mb-2">{t.thankYou}</p>
-          <p className="text-emerald-400">Daniel & Regina</p>
+          <p className="text-emerald-400">Mempelai Pria & Mempelai Wanita</p>
         </div>
       </footer>
     </div>

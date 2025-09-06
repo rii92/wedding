@@ -5,6 +5,7 @@ import WeddingInvitation2 from './lib/WeddingInvitation2';
 import WeddingInvitation3 from './lib/WeddingInvitation3';
 import WeddingInvitation4 from './lib/WeddingInvitation4';
 import Home from './lib/Home';
+import WeddingInvitation5 from './lib/WeddingInvitation5';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/theme2" element={<WeddingInvitation2 />} />
         <Route path="/theme3" element={<WeddingInvitation3 />} />
         <Route path="/theme4" element={<WeddingInvitation4 />} />
+        {/* <Route path="/theme5" element={<WeddingInvitation5 />} /> */}
       </Routes>
     </HashRouter>
   );

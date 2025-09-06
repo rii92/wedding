@@ -50,7 +50,7 @@ const translations = {
     yourMessage: "Your Message",
     invitationCode: "Invitation Code",
     submitting: "Submitting...",
-    wishesFor: "Wishes for Daniel & Regina",
+    wishesFor: "Wishes for Mempelai Pria & Mempelai Wanita",
     noWishesYet: "No wishes yet. Be the first to send your wishes!",
     weddingGifts: "Wedding Gifts",
     giftMessage:
@@ -82,9 +82,9 @@ const translations = {
     codePlaceholder: "Enter your invitation code",
     instagram: "Instagram",
     bankAccount: "Bank Central Asia (BCA)",
-    accountHolder: "a/n Daniel Smith",
+    accountHolder: "a/n Mempelai Pria Smith",
     addressDetails:
-      "Daniel & Regina\nJl. Pantai Indah No. 123\nKuta, Bali\nIndonesia 80361",
+      "Mempelai Pria & Mempelai Wanita\nJl. Pantai Indah No. 123\nKuta, Bali\nIndonesia 80361",
     quote1:
       "And over all these virtues put on love, which binds them all together in perfect unity.",
     quote1Source: "— Colossians 3:14",
@@ -125,7 +125,7 @@ const translations = {
     yourMessage: "Pesan Anda",
     invitationCode: "Kode Undangan",
     submitting: "Mengirim...",
-    wishesFor: "Ucapan untuk Daniel & Regina",
+    wishesFor: "Ucapan untuk Mempelai Pria & Mempelai Wanita",
     noWishesYet: "Belum ada ucapan. Jadilah yang pertama mengirim ucapan!",
     weddingGifts: "Hadiah Pernikahan",
     giftMessage:
@@ -157,9 +157,9 @@ const translations = {
     codePlaceholder: "Masukkan kode undangan Anda",
     instagram: "Instagram",
     bankAccount: "Bank Central Asia (BCA)",
-    accountHolder: "a/n Daniel Smith",
+    accountHolder: "a/n Mempelai Pria Smith",
     addressDetails:
-      "Daniel & Regina\nJl. Pantai Indah No. 123\nKuta, Bali\nIndonesia 80361",
+      "Mempelai Pria & Mempelai Wanita\nJl. Pantai Indah No. 123\nKuta, Bali\nIndonesia 80361",
     quote1:
       "Dan di atas semua kebajikan ini, kenakanlah kasih, yang menyatukan semuanya dalam kesatuan yang sempurna.",
     quote1Source: "— Kolose 3:14",
@@ -539,7 +539,7 @@ const WeddingInvitation4 = () => {
                   {t.weddingInvitation}
                 </h2>
                 <h1 className="mb-6 font-serif text-4xl font-bold text-tropical-coral">
-                  Daniel & Regina
+                  Mempelai Pria & Mempelai Wanita
                 </h1>
                 <p className="mb-8 text-tropical-teal-dark">{t.dear}</p>
                 <p className="mb-8 text-2xl font-medium text-tropical-coral">
@@ -577,7 +577,7 @@ const WeddingInvitation4 = () => {
               {t.weAreGettingMarried}
             </h2>
             <h1 className="mb-6 font-serif text-6xl font-bold">
-              Daniel & Regina
+              Mempelai Pria & Mempelai Wanita
             </h1>
             <p className="text-xl">31 December 2024</p>
             <div className="w-24 h-1 mx-auto my-8 bg-tropical-sand"></div>
@@ -609,7 +609,7 @@ const WeddingInvitation4 = () => {
                   </div>
                 </div>
                 <h3 className="mb-2 font-serif text-2xl text-tropical-teal-dark">
-                  Regina Doe
+                  Mempelai Wanita Doe
                 </h3>
                 <p className="mb-4 text-gray-600">
                   {t.daughterOf} Bpk. John Doe & Ibu Jane Doe
@@ -645,7 +645,7 @@ const WeddingInvitation4 = () => {
                   </div>
                 </div>
                 <h3 className="mb-2 font-serif text-2xl text-tropical-teal-dark">
-                  Daniel Smith
+                  Mempelai Pria Smith
                 </h3>
                 <p className="mb-4 text-gray-600">
                   {t.sonOf} Bpk. Robert Smith & Ibu Sarah Smith
@@ -1089,7 +1089,7 @@ const WeddingInvitation4 = () => {
                 <p className="mb-6 text-gray-600">{t.physicalGiftMessage}</p>
                 <div className="p-4 mb-4 border rounded-lg border-tropical-teal/20">
                   <p className="mb-2 font-medium text-tropical-teal-dark">
-                    Daniel & Regina
+                    Mempelai Pria & Mempelai Wanita
                   </p>
                   <p className="text-gray-600">{t.addressDetails}</p>
                 </div>
@@ -1109,10 +1109,10 @@ const WeddingInvitation4 = () => {
         {/* Footer */}
         <footer className="relative py-12 overflow-hidden text-center text-white bg-tropical-teal-dark">
           <div className="container max-w-4xl px-4 mx-auto">
-            <h2 className="mb-6 font-serif text-3xl">Daniel & Regina</h2>
+            <h2 className="mb-6 font-serif text-3xl">Mempelai Pria & Mempelai Wanita</h2>
             <p className="mb-8">{t.thankYou}</p>
             <p className="text-sm text-tropical-sand/60">
-              © 2024 Daniel & Regina Wedding. All rights reserved.
+              © 2024 Mempelai Pria & Mempelai Wanita Wedding. All rights reserved.
             </p>
           </div>
         </footer>

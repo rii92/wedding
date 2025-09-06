@@ -338,9 +338,9 @@ const WeddingInvitation = () => {
               <div className="space-y-6 text-center">
                 <h4 className="text-xl font-accent text-rustic-brown-light">{t.weddingOf}</h4>
                 <div className="space-y-2">
-                  <h1 className="text-5xl font-primary text-rustic-brown">Daniel</h1>
+                  <h1 className="text-5xl font-primary text-rustic-brown">Mempelai Pria</h1>
                   <span className="text-3xl font-accent text-rustic-gold">&</span>
-                  <h1 className="text-5xl font-primary text-rustic-brown">Regina</h1>
+                  <h1 className="text-5xl font-primary text-rustic-brown">Mempelai Wanita</h1>
                 </div>
                 <div className="w-24 h-1 mx-auto bg-rustic-gold"></div>
                 <p className="font-secondary text-rustic-brown-light">
@@ -396,9 +396,9 @@ const WeddingInvitation = () => {
         <div className="relative z-10 px-4 text-center">
           <BellRing className="w-16 h-16 mx-auto mb-8 text-rustic-gold animate-pulse" />
           <h4 className="mb-4 text-2xl font-accent text-rustic-gold">{t.theWeddingCelebration}</h4>
-          <h1 className="mb-4 font-primary text-7xl text-rustic-cream">Daniel</h1>
+          <h1 className="mb-4 font-primary text-7xl text-rustic-cream">Mempelai Pria</h1>
           <span className="block my-2 text-4xl font-accent text-rustic-gold">&</span>
-          <h1 className="mb-8 font-primary text-7xl text-rustic-cream">Regina</h1>
+          <h1 className="mb-8 font-primary text-7xl text-rustic-cream">Mempelai Wanita</h1>
           <div className="w-32 h-1 mx-auto mb-6 bg-rustic-gold"></div>
           <p className="mb-12 text-xl font-secondary text-rustic-cream">
             {new Date("2024-12-31").toLocaleDateString(language === "id" ? "id-ID" : "en-US", {
@@ -577,8 +577,8 @@ const WeddingInvitation = () => {
             </div>
             <div className="space-y-6">
               {[
-                { bank: "Bank BCA", number: "1234567890", name: "Daniel Pratama" },
-                { bank: "Bank Mandiri", number: "0987654321", name: "Regina Putri" },
+                { bank: "Bank BCA", number: "1234567890", name: "Mempelai Pria Pratama" },
+                { bank: "Bank Mandiri", number: "0987654321", name: "Mempelai Wanita Putri" },
               ].map((account, index) => (
                 <div
                   key={index}
@@ -733,7 +733,7 @@ const WeddingInvitation = () => {
               {/* Content */}
               <div className="space-y-6">
                 <Heart className="w-12 h-12 mx-auto text-rustic-gold animate-pulse" />
-                <h2 className="text-3xl font-accent text-rustic-cream">Daniel & Regina</h2>
+                <h2 className="text-3xl font-accent text-rustic-cream">Mempelai Pria & Mempelai Wanita</h2>
                 <p className="font-secondary text-rustic-cream/80">{t.thankYou}</p>
                 <div className="w-16 h-1 mx-auto bg-rustic-gold/30"></div>
                 <p className="text-lg font-primary text-rustic-cream/60">
