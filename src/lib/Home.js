@@ -136,6 +136,41 @@ const Home = () => {
               </Link>
             </div>
           </div>
+
+          {/* Template 5 - Gold Elegance Theme */}
+          <div className="overflow-hidden transition-shadow border rounded-lg shadow-md hover:shadow-xl">
+            {/* Hero Preview */}
+            <div className="relative flex items-center justify-center h-64 overflow-hidden bg-gradient-to-br from-white via-amber-50 to-yellow-50">
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-100/60 to-yellow-200/60 opacity-70"></div>
+              <div className="relative z-10 p-6 text-center text-yellow-700">
+                <h2 className="mb-2 font-serif text-2xl">Gold Elegance</h2>
+                <p className="mb-4 text-yellow-800/80">
+                  Undangan elegan nuansa putih & emas
+                </p>
+                <div className="w-20 h-1 mx-auto bg-yellow-600/70"></div>
+                <p className="mt-4 font-serif text-xl">
+                  Mempelai Pria & Mempelai Wanita
+                </p>
+              </div>
+            </div>
+
+            {/* Body */}
+            <div className="p-6">
+              <h3 className="mb-2 text-xl font-medium text-yellow-700">
+                Gold Elegance
+              </h3>
+              <p className="mb-4 text-gray-600">
+                Template dengan nuansa putih, krem, dan sentuhan emas yang
+                anggun
+              </p>
+              <Link
+                to="/theme5?to=Tamu%20Undangan&code=DEMO04"
+                className="block w-full px-4 py-2 font-medium text-center text-white transition-colors bg-yellow-600 rounded-md hover:bg-yellow-700"
+              >
+                Lihat Template
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>

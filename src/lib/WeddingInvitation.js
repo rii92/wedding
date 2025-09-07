@@ -157,7 +157,12 @@ const WeddingInvitation = () => {
 
       if (data.result === "Insertion successful") {
         setSubmitStatus(t.rsvpSent);
-        setRsvpForm({ namaundangan: to, presence: "hadir", jumlah: 1, kodeUndangan: invitationCode });
+        setRsvpForm({
+          namaundangan: to,
+          presence: "hadir",
+          jumlah: 1,
+          kodeUndangan: invitationCode,
+        });
       } else {
         setSubmitStatus(t.rsvpFailed);
       }
@@ -182,7 +187,12 @@ const WeddingInvitation = () => {
 
       if (data.result === "Insertion successful") {
         setSubmitStatus(t.wishSent);
-        setWishForm({ namaundangan: to, nama: "", wishes: "", kodeUndangan: invitationCode });
+        setWishForm({
+          namaundangan: to,
+          nama: "",
+          wishes: "",
+          kodeUndangan: invitationCode,
+        });
         fetchWishes(); // Refresh wishes list
       } else {
         setSubmitStatus(t.wishFailed);
@@ -318,7 +328,9 @@ const WeddingInvitation = () => {
           <h2 className="mb-4 font-serif text-2xl text-emerald-800">
             بِسْ‌ اللَّ‌ الرَّحْ‌ الرَّحِيم
           </h2>
-          <h3 className="mb-4 font-serif text-xl text-emerald-700">{t.weddingOf}</h3>
+          <h3 className="mb-4 font-serif text-xl text-emerald-700">
+            {t.weddingOf}
+          </h3>
           <h1 className="mb-6 font-serif text-4xl font-bold text-emerald-900">
             Mempelai Pria & Mempelai Wanita
           </h1>
@@ -365,12 +377,15 @@ const WeddingInvitation = () => {
             Mempelai Pria & Mempelai Wanita
           </h1>
           <p className="text-xl">
-            {new Date("2024-12-31").toLocaleDateString(language === "id" ? "id-ID" : "en-US", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+            {new Date("2024-12-31").toLocaleDateString(
+              language === "id" ? "id-ID" : "en-US",
+              {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }
+            )}
           </p>
           <Scroll className="w-8 h-8 mx-auto mt-12 animate-bounce text-white/80" />
         </div>
@@ -410,12 +425,15 @@ const WeddingInvitation = () => {
               </h3>
               <Calendar className="w-12 h-12 mx-auto mb-4 text-emerald-600" />
               <p className="mb-2">
-                {new Date("2024-12-31").toLocaleDateString(language === "id" ? "id-ID" : "en-US", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                {new Date("2024-12-31").toLocaleDateString(
+                  language === "id" ? "id-ID" : "en-US",
+                  {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }
+                )}
               </p>
               <p className="mb-2">08:00 WIB</p>
               <p className="text-emerald-700">Masjid Al-Hidayah</p>
@@ -436,12 +454,15 @@ const WeddingInvitation = () => {
               </h3>
               <MapPin className="w-12 h-12 mx-auto mb-4 text-emerald-600" />
               <p className="mb-2">
-                {new Date("2024-12-31").toLocaleDateString(language === "id" ? "id-ID" : "en-US", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                {new Date("2024-12-31").toLocaleDateString(
+                  language === "id" ? "id-ID" : "en-US",
+                  {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }
+                )}
               </p>
               <p className="mb-2">11:00 - 13:00 WIB</p>
               <p className="text-emerald-700">Hotel Grand Hyatt</p>
@@ -474,12 +495,18 @@ const WeddingInvitation = () => {
               <div className="p-4 transition-transform transform bg-white rounded hover:-translate-y-1">
                 <p className="font-semibold text-emerald-800">{t.bank} BCA</p>
                 <p className="text-emerald-700">1234567890</p>
-                <p className="text-emerald-700">{t.accountHolder} Mempelai Pria Pratama</p>
+                <p className="text-emerald-700">
+                  {t.accountHolder} Mempelai Pria Pratama
+                </p>
               </div>
               <div className="p-4 transition-transform transform bg-white rounded hover:-translate-y-1">
-                <p className="font-semibold text-emerald-800">{t.bank} Mandiri</p>
+                <p className="font-semibold text-emerald-800">
+                  {t.bank} Mandiri
+                </p>
                 <p className="text-emerald-700">0987654321</p>
-                <p className="text-emerald-700">{t.accountHolder} Mempelai Wanita Putri</p>
+                <p className="text-emerald-700">
+                  {t.accountHolder} Mempelai Wanita Putri
+                </p>
               </div>
             </div>
           </div>
@@ -500,7 +527,9 @@ const WeddingInvitation = () => {
         <div className="max-w-4xl px-4 py-8 mx-auto">
           {/* RSVP Form */}
           <div className="p-6 mb-12 bg-white rounded-lg shadow-lg">
-            <h2 className="mb-6 font-serif text-2xl text-emerald-800">{t.rsvp}</h2>
+            <h2 className="mb-6 font-serif text-2xl text-emerald-800">
+              {t.rsvp}
+            </h2>
             <form onSubmit={handleRSVPSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
@@ -624,6 +653,7 @@ const WeddingInvitation = () => {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="py-8 text-center text-white bg-emerald-900">
         <div className="container px-4 mx-auto">
           <Heart className="w-8 h-8 mx-auto mb-4 text-emerald-400 animate-pulse" />
