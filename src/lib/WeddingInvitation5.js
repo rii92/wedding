@@ -51,13 +51,14 @@ const translations = {
     wishSent: "Ucapan berhasil dikirim!",
     wishFailed: "Gagal mengirim ucapan. Silakan coba lagi.",
     thankYou: "Terima kasih telah menjadi bagian dari hari spesial kami",
-    quoteQuran:  `“Wahai manusia, bertakwalah kepada Tuhanmu yang telah menciptakanmu
+    quoteQuran: `“Wahai manusia, bertakwalah kepada Tuhanmu yang telah menciptakanmu
             dari diri yang satu (Adam) dan Dia menciptakan darinya pasangannya
             (Hawa). Dari keduanya Allah memperkembangbiakkan laki-laki dan
             perempuan yang banyak. Bertakwalah kepada Allah yang dengan nama-Nya
             kamu saling meminta dan (peliharalah) hubungan kekeluargaan.
             Sesungguhnya Allah selalu menjaga dan mengawasimu”`,
-    titleBrideGroom: "Maha suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan,dengan ini kami sampaikan pelabuhan terakhir kami",
+    titleBrideGroom:
+      "Maha suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan,dengan ini kami sampaikan pelabuhan terakhir kami",
     firstDaughter: "Putri Pertama dari",
     firstSon: "Putra Pertama dari",
     mister: "Bapak",
@@ -98,8 +99,9 @@ const translations = {
     wishSent: "Wish successfully sent!",
     wishFailed: "Failed to send wish. Please try again.",
     thankYou: "Thank you for being part of our special day",
-    quoteQuran:  `“O mankind, be conscious of your Lord, who created you from a single soul (Adam), and from it He created its mate (Hawa), and from the two of them He spread forth many men and women. And be mindful of Allah, in whose name you ask one another, and (honor and maintain) the ties of kinship. Indeed, Allah is ever watching over you.”`,
-    titleBrideGroom: "Glory be to Allah, who has created His creations in pairs. With this, we humbly announce the final harbor of our journey.",
+    quoteQuran: `“O mankind, be conscious of your Lord, who created you from a single soul (Adam), and from it He created its mate (Hawa), and from the two of them He spread forth many men and women. And be mindful of Allah, in whose name you ask one another, and (honor and maintain) the ties of kinship. Indeed, Allah is ever watching over you.”`,
+    titleBrideGroom:
+      "Glory be to Allah, who has created His creations in pairs. With this, we humbly announce the final harbor of our journey.",
     firstDaughter: "First Daughter of",
     firstSon: "First Son of",
     mister: "Mr.",
@@ -360,13 +362,19 @@ const WeddingInvitation5 = () => {
           )}
         </button>
       </div>
-
+      {/* Background floral overlay */}
+      <div
+        className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-10"
+        style={{
+          backgroundImage: "url('/wedding/images/bg-amber.png')", // ganti dengan asset floral milikmu
+        }}
+      ></div>
       {/* ✨ Header */}
       <section className="relative flex items-center justify-center min-h-screen text-center animate-fadeIn">
         <div className="relative z-10">
           <Moon className="w-16 h-16 mx-auto mb-6 text-amber-600 animate-pulse" />
           <h2 className="mb-4 font-serif text-2xl text-amber-600">
-            بِسْ‌ اللَّ‌ الرَّحْ‌ الرَّحِيم
+            بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ{" "}
           </h2>
           <h2 className="mb-4 font-serif text-2xl text-yellow-600">
             {t.weAreGettingMarried}
@@ -419,7 +427,7 @@ const WeddingInvitation5 = () => {
         <div
           className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-10"
           style={{
-            backgroundImage: "url('https://i.ibb.co/jLtQb0g/floral-bg.png')", // ganti dengan asset floral milikmu
+            backgroundImage: "url('/wedding/images/bg-amber.png')", // ganti dengan asset floral milikmu
           }}
         ></div>
 
@@ -439,67 +447,66 @@ const WeddingInvitation5 = () => {
       </section>
 
       {/* Bride & Groom Section */}
-<section
-  className={`relative py-16 transition-colors duration-500 ${
-    darkMode
-      ? "bg-gray-900 text-gray-100"
-      : "bg-gradient-to-b from-white to-amber-50 text-gray-800"
-  }`}
->
-  <div className="max-w-5xl px-6 mx-auto text-center">
-    {/* Header */}
-    <h3 className="mb-4 text-lg italic text-gray-600 dark:text-gray-300">
-      Bride & Groom
-    </h3>
-    <p className="mb-12 text-lg leading-relaxed">
-      {t.titleBrideGroom}
-    </p>
+      <section
+        className={`relative py-16 transition-colors duration-500 ${
+          darkMode
+            ? "bg-gray-900 text-gray-100"
+            : "bg-gradient-to-b from-white to-amber-50 text-gray-800"
+        }`}
+      >
+        <div className="max-w-5xl px-6 mx-auto text-center">
+          {/* Header */}
+          <h3 className="mb-4 text-lg italic text-gray-600 dark:text-gray-300">
+            Bride & Groom
+          </h3>
+          <p className="mb-12 text-lg leading-relaxed">{t.titleBrideGroom}</p>
 
-    {/* Grid Bride & Groom */}
-    <div className="grid items-start gap-12 md:grid-cols-2">
-      {/* Bride */}
-      <div className="flex flex-col items-center text-center">
-        <img
-          src="/wedding/images/bride.png" // ganti dengan asset mempelai wanita
-          alt="Mempelai Wanita"
-          className="w-56 h-auto mx-auto mb-6"
-        />
-        <h2
-          className={`text-2xl font-bold font-serif ${
-            darkMode ? "text-amber-400" : "text-amber-700"
-          }`}
-        >
-          [Mempelai Perempuan]
-        </h2>
-        <p className="mt-2 text-sm leading-relaxed">
-          {t.firstDaughter} : <br />
-          {t.mister} [Mempelai Perempuan] <br /> & <br /> {t.mimes} [Mempelai Perempuan]
-        </p>
-      </div>
+          {/* Grid Bride & Groom */}
+          <div className="grid items-start gap-12 md:grid-cols-2">
+            {/* Bride */}
+            <div className="flex flex-col items-center text-center">
+              <img
+                src="/wedding/images/bride.png" // ganti dengan asset mempelai wanita
+                alt="Mempelai Wanita"
+                className="w-56 h-auto mx-auto mb-6"
+              />
+              <h2
+                className={`text-2xl font-bold font-serif ${
+                  darkMode ? "text-amber-400" : "text-amber-700"
+                }`}
+              >
+                [Mempelai Perempuan]
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed">
+                {t.firstDaughter} : <br />
+                {t.mister} [Mempelai Perempuan] <br /> & <br /> {t.mimes}{" "}
+                [Mempelai Perempuan]
+              </p>
+            </div>
 
-      {/* Groom */}
-      <div className="flex flex-col items-center text-center">
-        <img
-          src="/wedding/images/groom.png" // ganti dengan asset mempelai pria
-          alt="Mempelai Pria"
-          className="w-56 h-auto mx-auto mb-6"
-        />
-        <h2
-          className={`text-2xl font-bold font-serif ${
-            darkMode ? "text-amber-400" : "text-amber-700"
-          }`}
-        >
-          [Nama Mempelai Pria]
-        </h2>
-        <p className="mt-2 text-sm leading-relaxed">
-          {t.firstSon} : <br />
-          {t.mister} [Mempelai Pria] <br /> & <br /> {t.mimes} [Mempelai Pria]
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
+            {/* Groom */}
+            <div className="flex flex-col items-center text-center">
+              <img
+                src="/wedding/images/groom.png" // ganti dengan asset mempelai pria
+                alt="Mempelai Pria"
+                className="w-56 h-auto mx-auto mb-6"
+              />
+              <h2
+                className={`text-2xl font-bold font-serif ${
+                  darkMode ? "text-amber-400" : "text-amber-700"
+                }`}
+              >
+                [Nama Mempelai Pria]
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed">
+                {t.firstSon} : <br />
+                {t.mister} [Mempelai Pria] <br /> & <br /> {t.mimes} [Mempelai
+                Pria]
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Akad Nikah dan Resepsi */}
       <section
@@ -608,40 +615,75 @@ const WeddingInvitation5 = () => {
             <p className="mb-4 text-gray-700 dark:text-gray-300">
               {t.giftMessage}
             </p>
-            <div className="space-y-4">
+
+            <div className="space-y-6">
+              {/* BCA */}
               <div
-                className={`p-4 transition-transform transform rounded shadow ${
+                className={`p-6 rounded shadow text-center ${
                   darkMode
                     ? "bg-gray-700 text-gray-200"
                     : "bg-white text-gray-800"
-                } hover:-translate-y-1`}
+                }`}
               >
-                <p className="font-semibold text-amber-800 dark:text-amber-400">
+                <p className="mb-2 font-semibold text-amber-800 dark:text-amber-400">
                   {t.bank} BCA
                 </p>
-                <p className="text-amber-700 dark:text-gray-300">1234567890</p>
-                <p className="text-amber-700 dark:text-gray-400">
+                <p className="mb-2 font-mono text-lg tracking-wide text-amber-700 dark:text-gray-200">
+                  1234567890
+                </p>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText("1234567890");
+                    setSubmitStatus("Nomor rekening BCA berhasil disalin!");
+                    setTimeout(() => setSubmitStatus(""), 2000);
+                  }}
+                  className="px-4 py-2 text-sm font-medium text-white rounded-lg bg-amber-600 hover:bg-amber-700"
+                >
+                  Salin Nomor
+                </button>
+                <p className="mt-3 text-sm text-amber-700 dark:text-gray-400">
                   {t.accountHolder} Mempelai Pria Pratama
                 </p>
               </div>
+
+              {/* Mandiri */}
               <div
-                className={`p-4 transition-transform transform rounded shadow ${
+                className={`p-6 rounded shadow text-center ${
                   darkMode
                     ? "bg-gray-700 text-gray-200"
                     : "bg-white text-gray-800"
-                } hover:-translate-y-1`}
+                }`}
               >
-                <p className="font-semibold text-amber-800 dark:text-amber-400">
+                <p className="mb-2 font-semibold text-amber-800 dark:text-amber-400">
                   {t.bank} Mandiri
                 </p>
-                <p className="text-amber-700 dark:text-gray-300">0987654321</p>
-                <p className="text-amber-700 dark:text-gray-400">
+                <p className="mb-2 font-mono text-lg tracking-wide text-amber-700 dark:text-gray-200">
+                  0987654321
+                </p>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText("0987654321");
+                    setSubmitStatus("Nomor rekening Mandiri berhasil disalin!");
+                    setTimeout(() => setSubmitStatus(""), 2000);
+                  }}
+                  className="px-4 py-2 text-sm font-medium text-white rounded-lg bg-amber-600 hover:bg-amber-700"
+                >
+                  Salin Nomor
+                </button>
+                <p className="mt-3 text-sm text-amber-700 dark:text-gray-400">
                   {t.accountHolder} Mempelai Wanita Putri
                 </p>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Notifikasi Elegan */}
+        {submitStatus && (
+          <div className="fixed px-4 py-2 text-white rounded-md shadow-lg bottom-4 right-4 bg-amber-600 animate-fadeIn">
+            {submitStatus}
+          </div>
+        )}
       </section>
 
       {/* RSVP and Wishes Section */}

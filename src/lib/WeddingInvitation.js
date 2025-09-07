@@ -370,7 +370,7 @@ const WeddingInvitation = () => {
         <div className="relative z-10 text-center text-white transition-all duration-1000 transform translate-y-0 opacity-100">
           <Moon className="w-16 h-16 mx-auto mb-6 text-yellow-200 animate-pulse" />
           <h2 className="mb-4 font-serif text-2xl animate-fade-in">
-            بِسْ‌ اللَّ‌ الرَّحْ‌ الرَّحِيم
+            بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ{" "}
           </h2>
           <h2 className="mb-4 font-serif text-2xl">{t.weAreGettingMarried}</h2>
           <h1 className="mb-6 font-serif text-6xl font-bold">
