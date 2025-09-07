@@ -51,6 +51,17 @@ const translations = {
     wishSent: "Ucapan berhasil dikirim!",
     wishFailed: "Gagal mengirim ucapan. Silakan coba lagi.",
     thankYou: "Terima kasih telah menjadi bagian dari hari spesial kami",
+    quoteQuran:  `“Wahai manusia, bertakwalah kepada Tuhanmu yang telah menciptakanmu
+            dari diri yang satu (Adam) dan Dia menciptakan darinya pasangannya
+            (Hawa). Dari keduanya Allah memperkembangbiakkan laki-laki dan
+            perempuan yang banyak. Bertakwalah kepada Allah yang dengan nama-Nya
+            kamu saling meminta dan (peliharalah) hubungan kekeluargaan.
+            Sesungguhnya Allah selalu menjaga dan mengawasimu”`,
+    titleBrideGroom: "Maha suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan,dengan ini kami sampaikan pelabuhan terakhir kami",
+    firstDaughter: "Putri Pertama dari",
+    firstSon: "Putra Pertama dari",
+    mister: "Bapak",
+    mimes: "Ibu",
   },
   en: {
     openInvitation: "Open Invitation",
@@ -87,6 +98,12 @@ const translations = {
     wishSent: "Wish successfully sent!",
     wishFailed: "Failed to send wish. Please try again.",
     thankYou: "Thank you for being part of our special day",
+    quoteQuran:  `“O mankind, be conscious of your Lord, who created you from a single soul (Adam), and from it He created its mate (Hawa), and from the two of them He spread forth many men and women. And be mindful of Allah, in whose name you ask one another, and (honor and maintain) the ties of kinship. Indeed, Allah is ever watching over you.”`,
+    titleBrideGroom: "Glory be to Allah, who has created His creations in pairs. With this, we humbly announce the final harbor of our journey.",
+    firstDaughter: "First Daughter of",
+    firstSon: "First Son of",
+    mister: "Mr.",
+    mimes: "Mrs.",
   },
 };
 
@@ -408,12 +425,7 @@ const WeddingInvitation5 = () => {
 
         <div className="relative z-10 max-w-3xl px-6 mx-auto">
           <blockquote className="italic leading-relaxed">
-            “Wahai manusia, bertakwalah kepada Tuhanmu yang telah menciptakanmu
-            dari diri yang satu (Adam) dan Dia menciptakan darinya pasangannya
-            (Hawa). Dari keduanya Allah memperkembangbiakkan laki-laki dan
-            perempuan yang banyak. Bertakwalah kepada Allah yang dengan nama-Nya
-            kamu saling meminta dan (peliharalah) hubungan kekeluargaan.
-            Sesungguhnya Allah selalu menjaga dan mengawasimu”
+            {t.quoteQuran}
           </blockquote>
 
           <p
@@ -440,8 +452,7 @@ const WeddingInvitation5 = () => {
       Bride & Groom
     </h3>
     <p className="mb-12 text-lg leading-relaxed">
-      Maha suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan,
-      dengan ini kami sampaikan pelabuhan terakhir kami
+      {t.titleBrideGroom}
     </p>
 
     {/* Grid Bride & Groom */}
@@ -461,8 +472,8 @@ const WeddingInvitation5 = () => {
           [Mempelai Perempuan]
         </h2>
         <p className="mt-2 text-sm leading-relaxed">
-          Putri Pertama dari : <br />
-          Bapak [Mempelai Perempuan] <br /> & <br /> Ibu [Mempelai Perempuan]
+          {t.firstDaughter} : <br />
+          {t.mister} [Mempelai Perempuan] <br /> & <br /> {t.mimes} [Mempelai Perempuan]
         </p>
       </div>
 
@@ -481,8 +492,8 @@ const WeddingInvitation5 = () => {
           [Nama Mempelai Pria]
         </h2>
         <p className="mt-2 text-sm leading-relaxed">
-          Putra Pertama dari : <br />
-          [Nama Ayah Pria] <br /> & <br /> [Nama Ibu Pria]
+          {t.firstSon} : <br />
+          {t.mister} [Mempelai Pria] <br /> & <br /> {t.mimes} [Mempelai Pria]
         </p>
       </div>
     </div>
